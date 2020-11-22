@@ -1,17 +1,23 @@
 #!/usr/bin/with-contenv bash
 
 # download config.json
-if [ "${CUSP}" = true ] && [ ! -e /bilbili-helper/config.json ]
+if [ "${CUSP}" = true ] && [ ! -e /config/config.json ]
 then
-  wget -P /bilbili-helper https://cdn.jsdelivr.net/gh/JunzhouLiu/BILIBILI-HELPER@main/src/main/resources/config.json
-elif [ "${CUSP}" = false ] && [ -e /bilbili-helper/config.json ]
+  wget -P /config https://cdn.jsdelivr.net/gh/JunzhouLiu/BILIBILI-HELPER@main/src/main/resources/config.json
+  rm -f /app/config.json
+  cp /config/config.json /app/config.json
+  chown -R root:root /app/config.json
+elif [ "${CUSP}" = true ] && [ -e /config/config.json ]
 then
-  rm -f /bilbili-helper/config.json
+  rm -f /app/config.json
+  cp /config/config.json /app/config.json
+  chown -R root:root /app/config.json
+elif [[ "${CUSP}" = false ]]
+then
+  rm -f /config/config.json
+  rm -f /app/config.json
 fi
 
 # permissions
 chown -R abc:abc \
-    /bilbili-helper
-  
-chmod a+x \
-  /bilbili-helper/BILIBILI-HELPER.jar
+    /config

@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  aria2:
+    image: superng6/bilbili-helper:latest
+    container_name: bilbili-helper
+    environment:
+      - PUID=1026
+      - PGID=100
+      - TZ=Asia/Shanghai
+      - TASK=1d
+      - DEDEUSERID=1
+      - SESSDATA=2
+      - BILI_JCT=3
+      - CUSP=true
+    volumes:
+      - /appdata/config:/config
+    restart: unless-stopped   
+    
