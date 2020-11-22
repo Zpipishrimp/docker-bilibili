@@ -1,4 +1,4 @@
-name: Build Image x86_64
+name: Build Image
 
 on:
   push:
@@ -35,14 +35,14 @@ jobs:
           docker buildx build \
           --platform=linux/arm64 \
           --output "type=image,push=true" \
-          --tag "superng6/bilbili-helper:${{ env.TAG }}" \
+          --tag "superng6/bilbili-helper:arm64-${{ env.TAG }}" \
           --file Dockerfile .
       - name: Build dockerfile (with push)
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: |
           docker buildx build \
-          --platform=linux/amd64 \
+          --platform=linux/arm64 \
           --output "type=image,push=true" \
-          --file ./Dockerfile . \
-          --tag superng6/bilbili-helper:latest
+          --file ./Dockerfile-arm64 . \
+          --tag superng6/bilbili-helper:arm64-latest
