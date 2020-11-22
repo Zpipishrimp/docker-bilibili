@@ -24,7 +24,7 @@ https://github.com/JunzhouLiu/BILIBILI-HELPER
 - 按 F12 打开 「开发者工具」 找到 应用程序/Application -> 存储 -> Cookies
 - 找到 `bili_jct` `SESSDATA` `DEDEUSERID` 三项，并复制值，填写至docker environment中
 
-![图示](docs/IMG/20201012001307.png)
+![Ig1gTI](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/Ig1gTI.jpg)
 
 
 | Name       | Value            |
@@ -32,8 +32,6 @@ https://github.com/JunzhouLiu/BILIBILI-HELPER
 | DEDEUSERID | 从 Cookie 中获取 |
 | SESSDATA   | 从 Cookie 中获取 |
 | BILI_JCT   | 从 Cookie 中获取 |
-
-![图示](docs/IMG/20201013210000.png)
 
 docker-compose  
   ````
@@ -86,12 +84,3 @@ userAgent可选参数列表
 *ps：如果尝试给关注的 up 投币十次后（保不准你关注的是年更up主），还没完成每日投币任务，则切换成热榜模式，给热榜视频投币*
 
 *投币数量代码做了处理，如果本日投币不能获得经验了，则不会投币，每天只投能获得经验的硬币。假设你设置每日投币 3 个，早上 7 点你自己投了 2 个硬币，则十点半时，程序只会投 1 个）*
-
-## 微信订阅通知
-
-1. 前往 [sc.ftqq.com](http://sc.ftqq.com/3.version) 点击登入，创建账号（建议使用 GitHub 登录）。
-2. 点击点[发送消息](http://sc.ftqq.com/?c=code) ，生成一个 Key。将其增加到 Github Secrets 中，变量名为 `SERVERPUSHKEY`
-3. [绑定微信账号](http://sc.ftqq.com/?c=wechat&a=bind) ，开启微信推送。
-![图示](docs/IMG/serverpush.png)
-4. 推送效果展示
-![图示](docs/IMG/wechatMsgPush.png)
