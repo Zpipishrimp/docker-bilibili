@@ -3,7 +3,7 @@
 # download config.json
 if [ "${CUSP}" = true ] && [ ! -e /config/config.json ]
 then
-  wget -P /config https://cdn.jsdelivr.net/gh/JunzhouLiu/BILIBILI-HELPER@main/src/main/resources/config.json
+  wget -P /config https://cdn.jsdelivr.net/gh/SuperNG6/docker-bilbili-helper@main/config.json
   rm -f /app/config.json
   cp /config/config.json /app/config.json
   chown -R root:root /app/config.json

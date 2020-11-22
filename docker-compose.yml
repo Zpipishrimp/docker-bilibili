@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  aria2:
+  bilbili-helper:
     image: superng6/bilbili-helper:latest
     container_name: bilbili-helper
     environment:
