@@ -12,7 +12,8 @@ FROM openjdk:8-jdk-slim-buster
 # set label
 LABEL maintainer="NG6"
 ARG S6_VER=2.0.0.1
-ENV TZ=Asia/Shanghai CUSP=true DEDEUSERID=1 SESSDATA=2 BILI_JCT=3
+ENV TZ=Asia/Shanghai CUSP=true DEDEUSERID=1 SESSDATA=2 BILI_JCT=3 \
+    PUID=1026 PGID=100
 # copy files
 COPY root/ /
 COPY --from=builder /tmp/BILIBILI-HELPER.jar  /bilbili-helper/BILIBILI-HELPER.jar
