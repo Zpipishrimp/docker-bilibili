@@ -24,7 +24,7 @@ https://github.com/JunzhouLiu/BILIBILI-HELPER
 - 按 F12 打开 「开发者工具」 找到 应用程序/Application -> 存储 -> Cookies
 - 找到 `bili_jct` `SESSDATA` `DEDEUSERID` 三项，并复制值，填写至docker environment中
 
-![Ig1gTI](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/Ig1gTI.jpg)
+![20201012001307](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/20201012001307.jpg)
 
 
 | Name       | Value            |
