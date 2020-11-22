@@ -2,10 +2,8 @@ name: Build Image
 
 on:
   push:
-    branches:
-      - 'main'
-    paths-ignore:
-      - "README.md"
+    paths:
+      - "ReleaseTag"
   repository_dispatch:
   workflow_dispatch:
 
