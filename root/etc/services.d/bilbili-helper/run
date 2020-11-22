@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv bash
+
+# 启动定时任务,默认一小时执行一次
+# 启动bilbili-helper
+s6-setuidgid abc \
+	java -jar /bilbili-helper/BILIBILI-HELP.jar DEDEUSERID SESSDATA BILI_JCT
+
+echo -e "$(date +"%m/%d %H:%M:%S")"
+echo ==============今天已签到完毕，下次签到时间为${TASK}后==============
+sleep $TASK
