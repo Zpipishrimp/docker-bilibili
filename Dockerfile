@@ -1,8 +1,8 @@
 FROM lsiobase/alpine:3.12 as builder
-# ARIANG_VER
-ARG BHV=1.1.8
 # download bilbili-helper
 RUN apk add --no-cache unzip \
+&&	wget https://cdn.jsdelivr.net/gh/SuperNG6/docker-bilbili-helper@main/ReleaseTag \
+&&	BHV=$(cat ReleaseTag | head -n1) \
 &&	wget -P /tmp https://github.com/JunzhouLiu/BILIBILI-HELPER/releases/download/V${BHV}/BILIBILI-HELPER-v${BHV}.zip \
 &&	unzip /tmp/BILIBILI-HELPER-v${BHV}.zip -d /tmp \
 &&	mv /tmp/BILIBILI-HELPER-v${BHV}.jar /tmp/BILIBILI-HELPER.jar
