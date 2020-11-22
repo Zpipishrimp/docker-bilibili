@@ -4,8 +4,9 @@
 根据BILIBILI-HELPER项目封装为docker镜像  
 https://github.com/JunzhouLiu/BILIBILI-HELPER  
 
-BILIBILI-HELPER自身支持在GitHub action中运行，非常方便。但是由于GitHub action的服务器在海外，异地海外登录账号可能会引起B站风控警报，本地部署更可靠一些。
-本镜像基于openjdk8官方镜像构建，安全可靠，并尽可能的缩小镜像体积。
+BILIBILI-HELPER自身支持在GitHub action中运行，非常方便。但是由于GitHub action的服务器在海外，异地海外登录账号可能会引起B站风控警报，本地部署更可靠一些。  
+本镜像基于openjdk8官方镜像构建，安全可靠，并尽可能的缩小镜像体积。  
+关于自定义配置请参照BILIBILI-HELPER官方文档。
 ## Docker Hub
 https://hub.docker.com/r/superng6/bilbili-helper
 
