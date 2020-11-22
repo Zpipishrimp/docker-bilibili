@@ -1,10 +1,13 @@
-# Docker BILIBILI-HELPER Docker | BILIBILI助手
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER?style=flat-square)
-
+# Docker BILIBILI-HELPER | BILIBILI助手
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER?style=flat-square)   
 ## 项目介绍
 根据BILIBILI-HELPER项目封装为docker镜像  
-https://github.com/JunzhouLiu/BILIBILI-HELPER
+https://github.com/JunzhouLiu/BILIBILI-HELPER  
 
+BILIBILI-HELPER自身支持在GitHub action中运行，非常方便。但是由于GitHub action的服务器在海外，异地海外登录账号可能会引起B站风控警报，本地部署更可靠一些。
+本镜像基于openjdk8官方镜像构建，安全可靠，并尽可能的缩小镜像体积。
+## Docker Hub
+https://hub.docker.com/r/superng6/bilbili-helper
 
 * [x] 自定义时间运行任务。(默认以打开容器时间开始每24时执行一次)
 * [x] 哔哩哔哩漫画每日自动签到 。
@@ -18,6 +21,13 @@ https://github.com/JunzhouLiu/BILIBILI-HELPER
 * [x] Linux用户支持自定义配置了。
 * [x] 投币策略更新可配置投币喜好。*【可配置优先给关注的up投币】*
 
+## 使用说明
+目前支持两种架构，x86-6和arm64位处理器。
+| Architecture | Tag            |
+| ------------ | -------------- |
+| x86-64       | latest         |
+| arm64        | arm64-latest   |
+
 
 ### 获取 Bilibili Cookies**
 - 浏览器打开并登录 [bilibili 网站](https://www.bilibili.com/)
@@ -26,17 +36,25 @@ https://github.com/JunzhouLiu/BILIBILI-HELPER
 
 ![20201012001307](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/20201012001307.jpg)
 
+#### 参数说明
 
 | Name       | Value            |
 | ---------- | ---------------- |
+| PUID |  Linux用户ID（以root用户权限运行填写0） |
+| PGID |  Linux组ID（以root用户权限运行填写0）  |
+| TZ   | 系统时区（默认上海时区） |
+| CUSP   | 自定义配置文件（默认禁用） |
+| TASK   | 执行任务的间隔时间（1d表示1天，1h表示1小时） |
 | DEDEUSERID | 从 Cookie 中获取 |
 | SESSDATA   | 从 Cookie 中获取 |
 | BILI_JCT   | 从 Cookie 中获取 |
 
-docker-compose  
-  ````
-version: "3"
+### 运行方式
+#### docker-compose  
+编辑docker-compose.yml文件，填写对应参数
 
+````
+version: "3"
 services:
   bilbili-helper:
     image: superng6/bilbili-helper:latest
@@ -49,12 +67,24 @@ services:
       - DEDEUSERID=1
       - SESSDATA=2
       - BILI_JCT=3
-      - CUSP=true
+      - CUSP=false
     volumes:
       - /appdata/config:/config
     restart: unless-stopped   
-  ````    
+````    
 
+#### 简化版本
+推荐不折腾用户使用，填写`bili_jct` `SESSDATA` `DEDEUSERID` 三项即可使用，默认24时执行任务一次
+````
+docker run -d \
+  --name=bilbili-helper \
+  -e DEDEUSERID=1 \
+  -e SESSDATA=2 \
+  -e BILI_JCT=3 \
+  -e CUSP=false
+  --restart unless-stopped \
+  superng6/superng6/bilbili-helper:latest
+  ````
 
 ### 配置自定义功能
 
