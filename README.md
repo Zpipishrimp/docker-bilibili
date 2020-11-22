@@ -1,5 +1,4 @@
-# Docker BILIBILI-HELPER
-# Docker BILIBILI助手
+# Docker BILIBILI-HELPER Docker | BILIBILI助手
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER?style=flat-square)
 
 ## 项目介绍
