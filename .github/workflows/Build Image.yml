@@ -31,7 +31,7 @@ jobs:
       - name: Build tag
         run: |
           docker buildx build \
-          --platform=linux/arm64 \
+          --platform=linux/amd64 \
           --output "type=image,push=true" \
           --tag "superng6/bilbili-helper:${{ env.TAG }}" \
           --file Dockerfile .
