@@ -35,6 +35,7 @@ RUN apt -y update && apt -y install wget tzdata \
 	/var/lib/apt/lists/* \
 	/var/tmp/*
 
+WORKDIR /app
 # volume
 VOLUME [ "/config" ]
 

@@ -118,11 +118,23 @@ userAgent可选参数列表
 
 *投币数量代码做了处理，如果本日投币不能获得经验了，则不会投币，每天只投能获得经验的硬币。假设你设置每日投币 3 个，早上 7 点你自己投了 2 个硬币，则十点半时，程序只会投 1 个）*
 
+# 微信订阅通知
+
+## 订阅执行结果
+
+1. 前往 [sc.ftqq.com](http://sc.ftqq.com/3.version) 点击登入，创建账号（建议使用 GitHub 登录）。
+2. 点击点[发送消息](http://sc.ftqq.com/?c=code) ，生成一个 Key。将其增加到 Github Secrets 中，变量名为 `SERVERPUSHKEY`
+3. [绑定微信账号](http://sc.ftqq.com/?c=wechat&a=bind) ，开启微信推送。
+![serverpush](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/serverpush.png)
+4. 推送效果展示
+![wechatMsgPush](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/wechatMsgPush.jpg)
+
 ## 关于群晖
 
 群晖用户请使用你当前的用户SSH进系统，输入 ``id 你的用户id`` 获取到你的UID和GID并输入进去
 
 ![nwmkxT](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/nwmkxT.jpg)
+
 
 
 ## # Preview

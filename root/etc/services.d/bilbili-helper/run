@@ -2,7 +2,7 @@
 
 # 启动定时任务,默认一天执行一次
 # 启动bilbili-helper
-java -jar /app/BILIBILI-HELPER.jar ${DEDEUSERID} ${SESSDATA} ${BILI_JCT} ${SERVERPUSHKEY}
+cd /app && java -jar /app/BILIBILI-HELPER.jar ${DEDEUSERID} ${SESSDATA} ${BILI_JCT} ${SERVERPUSHKEY} >/config/bilbili-helper.log &
 
 echo -e "$(date +"%m/%d %H:%M:%S")"
 echo ==============今天已签到完毕，下次签到时间为${TASK}后==============
