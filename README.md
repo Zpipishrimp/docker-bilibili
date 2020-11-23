@@ -1,7 +1,7 @@
 # Docker BILIBILI-HELPER | BILIBILI助手
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER?style=flat-square)   
 ## 项目介绍
-根据BILIBILI-HELPER项目封装为docker镜像  
+根据BILIBILI-HELPER项目封装为docker镜像，并同步更新最新release版本
 https://github.com/JunzhouLiu/BILIBILI-HELPER  
 
 BILIBILI-HELPER自身支持在GitHub action中运行，非常方便。但是由于GitHub action的服务器在海外，异地海外登录账号可能会引起B站风控警报，本地部署更可靠一些。  
@@ -121,8 +121,7 @@ userAgent可选参数列表
 群晖用户请使用你当前的用户SSH进系统，输入 ``id 你的用户id`` 获取到你的UID和GID并输入进去
 
 ![nwmkxT](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/nwmkxT.jpg)
-![1d5oD8](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/1d5oD8.jpg)
-![JiGtJA](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/JiGtJA.jpg)
+
 
 ## # Preview
 ![Xnip2020-11-22_13-56-10](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/Xnip2020-11-22_13-56-10.jpg)
