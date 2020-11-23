@@ -1,5 +1,5 @@
 # Docker BILIBILI-HELPER | BILIBILI助手
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER?style=flat-square)![](https://img.shields.io/docker/pulls/superng6/bilbili-helper?style=flat-square)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER?style=flat-square)  ![](https://img.shields.io/docker/pulls/superng6/bilbili-helper?style=flat-square)
 ## 项目介绍
 根据BILIBILI-HELPER项目封装为docker镜像，并同步更新最新release版本  
 https://github.com/JunzhouLiu/BILIBILI-HELPER  
@@ -51,6 +51,10 @@ https://hub.docker.com/r/superng6/bilbili-helper
 | BILI_JCT   | 从 Cookie 中获取 |SERVERPUSHKEY
 | SERVERPUSHKEY   | 通过server酱推送执行结果到微信(可选项) |
 
+### 修改自定义配置的方法
+首先需要开启自定义配置选项`CUSP=true`，`false`会删除删除自定义配置文件  
+挂载`/config`后可以直接在`nas/本机`中编辑`/config/config.json`文件，重启容器后生效. 
+![Xnip2020-11-23_21-27-51](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/Xnip2020-11-23_21-27-51.jpg)
 ### 运行方式
 #### docker-compose  
 编辑docker-compose.yml文件，填写对应参数
