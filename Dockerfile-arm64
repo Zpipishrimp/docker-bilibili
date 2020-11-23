@@ -18,7 +18,7 @@ ENV TZ=Asia/Shanghai TASK=1d \
 # copy files
 COPY root/ /
 COPY --from=builder /tmp/BILIBILI-HELPER.jar  /app/BILIBILI-HELPER.jar
-COPY --from=builder /tmp/config.json  /app/config.json
+COPY --from=builder /tmp/config.json  /bak/config.json
 # create abc user
 RUN apt -y update && apt -y install wget tzdata \
 &&  if [ "$(uname -m)" = "x86_64" ];then s6_arch=amd64;elif [ "$(uname -m)" = "aarch64" ];then s6_arch=aarch64;elif [ "$(uname -m)" = "armv7l" ];then s6_arch=arm; fi  \
