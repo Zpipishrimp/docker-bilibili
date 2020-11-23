@@ -1,7 +1,7 @@
 FROM lsiobase/alpine:3.12 as builder
 # download bilbili-helper
 RUN apk add --no-cache unzip \
-&&	wget https://cdn.jsdelivr.net/gh/SuperNG6/docker-bilbili-helper@main/ReleaseTag \
+&&	wget https://raw.githubusercontent.com/SuperNG6/docker-bilbili-helper/main/ReleaseTag \
 &&	BHV=$(cat ReleaseTag | head -n1) \
 &&	wget -P /tmp https://github.com/JunzhouLiu/BILIBILI-HELPER/releases/download/V${BHV}/BILIBILI-HELPER-v${BHV}.zip \
 &&	unzip /tmp/BILIBILI-HELPER-v${BHV}.zip -d /tmp \
@@ -18,6 +18,7 @@ ENV TZ=Asia/Shanghai TASK=1d \
 # copy files
 COPY root/ /
 COPY --from=builder /tmp/BILIBILI-HELPER.jar  /app/BILIBILI-HELPER.jar
+COPY --from=builder /tmp/config.json  /app/config.json
 # create abc user
 RUN apt -y update && apt -y install wget tzdata \
 &&  if [ "$(uname -m)" = "x86_64" ];then s6_arch=amd64;elif [ "$(uname -m)" = "aarch64" ];then s6_arch=aarch64;elif [ "$(uname -m)" = "armv7l" ];then s6_arch=arm; fi  \

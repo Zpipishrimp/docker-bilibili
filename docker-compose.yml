@@ -12,7 +12,8 @@ services:
       - DEDEUSERID=1
       - SESSDATA=2
       - BILI_JCT=3
-      - CUSP=true
+#     - SERVERPUSHKEY=token
+      - CUSP=false
     volumes:
       - /appdata/config:/config
     restart: unless-stopped   

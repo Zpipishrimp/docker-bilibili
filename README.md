@@ -1,5 +1,5 @@
 # Docker BILIBILI-HELPER | BILIBILI助手
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER?style=flat-square)   
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER?style=flat-square)![](https://img.shields.io/docker/pulls/superng6/bilbili-helper?style=flat-square)
 ## 项目介绍
 根据BILIBILI-HELPER项目封装为docker镜像，并同步更新最新release版本  
 https://github.com/JunzhouLiu/BILIBILI-HELPER  
@@ -48,7 +48,8 @@ https://hub.docker.com/r/superng6/bilbili-helper
 | TASK   | 执行任务的间隔时间（1d表示1天，1h表示1小时） |
 | DEDEUSERID | 从 Cookie 中获取 |
 | SESSDATA   | 从 Cookie 中获取 |
-| BILI_JCT   | 从 Cookie 中获取 |
+| BILI_JCT   | 从 Cookie 中获取 |SERVERPUSHKEY
+| SERVERPUSHKEY   | 通过server酱推送执行结果到微信(可选项) |
 
 ### 运行方式
 #### docker-compose  
@@ -68,6 +69,7 @@ services:
       - DEDEUSERID=1
       - SESSDATA=2
       - BILI_JCT=3
+#     - SERVERPUSHKEY=token
       - CUSP=false
     volumes:
       - /appdata/config:/config
