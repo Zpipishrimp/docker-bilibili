@@ -16,5 +16,4 @@ services:
       - CUSP=false
     volumes:
       - /appdata/config:/config
-    restart: unless-stopped   
-    
+    restart: unless-stopped
