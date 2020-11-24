@@ -1,7 +1,7 @@
 # Docker BILIBILI-HELPER | BILIBILI助手
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER?style=flat-square)  ![](https://img.shields.io/docker/pulls/superng6/bilbili-helper?style=flat-square)
 ## 项目介绍
-根据BILIBILI-HELPER项目封装为docker镜像，并同步更新最新release版本  
+**基于BILIBILI-HELPER项目封装为docker镜像，并同步更新最新release版本**  
 https://github.com/JunzhouLiu/BILIBILI-HELPER  
 
 BILIBILI-HELPER自身支持在GitHub action中运行，非常方便。但是由于GitHub action的服务器在海外，异地海外登录账号可能会引起B站风控警报，本地部署更可靠一些。  
@@ -100,14 +100,26 @@ docker run -d \
   containrrr/watchtower --cleanup --schedule "0 0 4 * * *" \
   bilbili-helper
 ````
+## 版本控制
+如果在某版本的bilbili-helper中遇到问题，想要回退历史版本，可以删除容器后运行指定版本镜像`tag`  
+https://hub.docker.com/r/superng6/bilbili-helper/tags?page=1&ordering=last_updated  
 
-### 配置自定义功能
-## 修改自定义配置的方法
+![Xnip2020-11-24_20-55-52](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/Xnip2020-11-24_20-55-52.jpg)
+
+## 群晖&Linux用户权限
+
+群晖用户请使用你当前的用户SSH进系统，输入 ``id 你的用户id`` 获取到你的UID和GID并输入进去
+
+![nwmkxT](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/nwmkxT.jpg)
+
+
+## 配置自定义功能
+### 修改自定义配置的方法
 首先需要开启自定义配置选项`CUSP=true`，`false`会删除自定义配置文件  
 挂载`/config`后可以直接在`nas/本机`中编辑`/config/config.json`文件，重启容器后生效. 
 ![Xnip2020-11-23_21-27-51](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/Xnip2020-11-23_21-27-51.jpg)
 
-**配置文件位于 `/config/config.json`**
+**配置文件位于 `/config/config.json`，修改配置文件后请重启容器**
 
 参数示意
 
@@ -134,9 +146,9 @@ userAgent可选参数列表
 
 *投币数量代码做了处理，如果本日投币不能获得经验了，则不会投币，每天只投能获得经验的硬币。假设你设置每日投币 3 个，早上 7 点你自己投了 2 个硬币，则十点半时，程序只会投 1 个）*
 
-# 微信订阅通知
+## 微信订阅通知
 
-## 订阅执行结果
+### 订阅执行结果
 
 1. 前往 [sc.ftqq.com](http://sc.ftqq.com/3.version) 点击登入，创建账号（建议使用 GitHub 登录）。
 2. 点击点[发送消息](http://sc.ftqq.com/?c=code) ，生成一个 Key。将其增加到 Github Secrets 中，变量名为 `SERVERPUSHKEY`
@@ -144,17 +156,6 @@ userAgent可选参数列表
 ![serverpush](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/serverpush.png)
 4. 推送效果展示
 ![wechatMsgPush](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/wechatMsgPush.jpg)
-
-## 版本控制
-如果在某版本的bilbili-helper中遇到问题，想要回退历史版本，可以删除容器后运行指定版本镜像`tag`  
-https://hub.docker.com/r/superng6/bilbili-helper/tags?page=1&ordering=last_updated
-
-## 关于群晖
-
-群晖用户请使用你当前的用户SSH进系统，输入 ``id 你的用户id`` 获取到你的UID和GID并输入进去
-
-![nwmkxT](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/nwmkxT.jpg)
-
 
 
 ## # Preview
