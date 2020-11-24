@@ -1,9 +1,9 @@
 #!/usr/bin/with-contenv bash
 
-# 启动定时任务,默认一天执行一次
+# 启动定时任务,默认每天执行一次
 # 启动bilbili-helper
-cd /app && java -jar /app/BILIBILI-HELPER.jar ${DEDEUSERID} ${SESSDATA} ${BILI_JCT} ${SERVERPUSHKEY} | tee -a /config/bilbili-helper.log
+cd /app && java -jar /app/BILIBILI-HELPER.jar ${DEDEUSERID} ${SESSDATA} ${BILI_JCT} ${SERVERPUSHKEY} | s6-setuidgid abc tee -a /config/bilbili-helper.log
 
-echo -e "==================$(date +"%Y/%m/%d %H:%M:%S")=================="
-echo ==============今天已签到完毕，下次签到时间为${TASK}后==============
-sleep $TASK
+echo -e "==================$(date +"%Y/%m/%d %H:%M:%S")==================" | s6-setuidgid abc tee -a /config/bilbili-helper.log
+echo -e "==========今天已签到完毕，下次签到时间为${TASK}后===========" | s6-setuidgid abc tee -a /config/bilbili-helper.log
+sleep ${TASK}
