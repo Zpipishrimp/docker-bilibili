@@ -4,7 +4,7 @@
 if [ "${CUSP}" = true ] && [ ! -e /config/config.json ]
 then
   rm -f /app/config.json
-  cp /bak/config.json /config/config.json
+  cp /app-conf/config.json /config/config.json
   cp /config/config.json /app/config.json
   chown -R root:root /app/config.json
 elif [ "${CUSP}" = true ] && [ -e /config/config.json ]
