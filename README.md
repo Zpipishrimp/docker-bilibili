@@ -84,9 +84,9 @@ docker run -d \
   -e DEDEUSERID=1 \
   -e SESSDATA=2 \
   -e BILI_JCT=3 \
-  -e CUSP=false
+  -e CUSP=false \
   --restart unless-stopped \
-  superng6/superng6/bilbili-helper:latest
+  superng6/bilbili-helper:latest
   ````
 
 ### 自动更新bilbili-helper
