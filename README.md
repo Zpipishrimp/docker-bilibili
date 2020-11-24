@@ -22,6 +22,9 @@ https://hub.docker.com/r/superng6/bilbili-helper
 * [x] Linux用户支持自定义配置了。
 * [x] 投币策略更新可配置投币喜好。*【可配置优先给关注的up投币】*
 
+## Blog
+https://sleele.com/2020/11/24/docker-bilibili-helper/
+
 ## 使用说明
 目前支持两种处理器架构，x86-64和arm64
 | Architecture | Tag            |
