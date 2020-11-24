@@ -89,6 +89,18 @@ docker run -d \
   superng6/superng6/bilbili-helper:latest
   ````
 
+### 自动更新bilbili-helper
+使用watchtower每天早上4点检查更新bilbili-helper
+````
+docker run -d \
+  --name watchtower \
+  --restart=always \
+  -e TZ=Asia/Shanghai \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  containrrr/watchtower --cleanup --schedule "0 0 4 * * *" \
+  bilbili-helper
+````
+
 ### 配置自定义功能
 ## 修改自定义配置的方法
 首先需要开启自定义配置选项`CUSP=true`，`false`会删除自定义配置文件  
@@ -132,6 +144,10 @@ userAgent可选参数列表
 ![serverpush](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/serverpush.png)
 4. 推送效果展示
 ![wechatMsgPush](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/wechatMsgPush.jpg)
+
+## 版本控制
+如果在某版本的bilbili-helper中遇到问题，想要回退历史版本，可以删除容器后运行指定版本镜像`tag`  
+https://hub.docker.com/r/superng6/bilbili-helper/tags?page=1&ordering=last_updated
 
 ## 关于群晖
 
