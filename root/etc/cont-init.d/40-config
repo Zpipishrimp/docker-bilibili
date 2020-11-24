@@ -18,6 +18,11 @@ then
   rm -f /app/config.json
 fi
 
+if [[ ! -e /config/bilbili-helper.log ]]
+then
+  touch /config/bilbili-helper.log
+fi
+
 # permissions
 chown -R abc:abc \
     /config
