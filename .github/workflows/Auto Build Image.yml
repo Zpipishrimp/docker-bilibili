@@ -26,9 +26,9 @@ jobs:
       - name: Set Version
         id: set-version
         run: |
-          echo "::set-output name=version::$(wget -qO- -t1 -T2 "https://api.github.com/repos/JunzhouLiu/BILIBILI-HELPER/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g;s/V//g')"
-          echo "TAG=$(wget -qO- -t1 -T2 "https://api.github.com/repos/JunzhouLiu/BILIBILI-HELPER/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g;s/V//g')" >> $GITHUB_ENV
-      - name: Cache BILIBILI-HELPER tag
+          BHT=$(wget --no-check-certificate -qO- https://api.github.com/repos/JunzhouLiu/BILIBILI-HELPER/tags | grep 'name' | cut -d\" -f4 | head -1 | cut -c 2- )
+          echo "::set-output name=version::${BHT}"
+      - name: Cache bilibili-helper tag
         id: cache-tag
         uses: actions/cache@v2
         with:
@@ -47,7 +47,7 @@ jobs:
           docker buildx build \
             --platform=linux/arm64 \
             --output "type=image,push=true" \
-            --tag "superng6/bilbili-helper:arm64-${{ env.TAG }}" \
+            --tag "superng6/bilbili-helper:arm64-${{ steps.set-version.outputs.version }}" \
             --file Dockerfile-arm64 .
       - name: Build dockerfile tag x86_64
         if: steps.get-release-tag.outputs.status == 'success'
@@ -55,7 +55,7 @@ jobs:
           docker buildx build \
             --platform=linux/amd64 \
             --output "type=image,push=true" \
-            --tag "superng6/bilbili-helper:${{ env.TAG }}" \
+            --tag "superng6/bilbili-helper:${{ steps.set-version.outputs.version }}" \
             --file Dockerfile .
       - name: Build dockerfile arm64
         if: steps.get-release-tag.outputs.status == 'success'
