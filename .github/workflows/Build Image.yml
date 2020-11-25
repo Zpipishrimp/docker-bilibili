@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - "ReleaseTag"
-  repository_dispatch:
   workflow_dispatch:
 
 jobs:
