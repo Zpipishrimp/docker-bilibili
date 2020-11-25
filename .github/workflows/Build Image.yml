@@ -25,17 +25,21 @@ jobs:
         with:
           buildx-version: latest
       - name: Set env
+        id: set-version
         run: |
           echo "TAG=$(cat ReleaseTag | head -n1)" >> $GITHUB_ENV
+          echo "::set-output name=status::success"
         shell: bash
-      - name: Build tag arm64
+      - name: Build dockerfile tag arm64
+        if: steps.set-version.outputs.status == 'success'
         run: |
           docker buildx build \
             --platform=linux/arm64 \
             --output "type=image,push=true" \
             --tag "superng6/bilbili-helper:arm64-${{ env.TAG }}" \
             --file Dockerfile-arm64 .
-      - name: Build tag x86_64
+      - name: Build dockerfile tag x86_64
+        if: steps.set-version.outputs.status == 'success'
         run: |
           docker buildx build \
             --platform=linux/amd64 \
@@ -43,6 +47,7 @@ jobs:
             --tag "superng6/bilbili-helper:${{ env.TAG }}" \
             --file Dockerfile .
       - name: Build dockerfile arm64
+        if: steps.set-version.outputs.status == 'success'
         run: |
           docker buildx build \
             --platform=linux/arm64 \
@@ -50,8 +55,9 @@ jobs:
             --file ./Dockerfile-arm64 . \
             --tag superng6/bilbili-helper:arm64-latest
       - name: Build dockerfile x86_64
+        if: steps.set-version.outputs.status == 'success'
         run: |
-            docker buildx build \
+          docker buildx build \
             --platform=linux/amd64 \
             --output "type=image,push=true" \
             --file ./Dockerfile . \
