@@ -1,0 +1,75 @@
+name: Auto Build Image
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    schedule:
+      - cron: '30 2 * * *'
+
+jobs:
+  buildx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Dockerhub login
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: |
+          echo "${DOCKER_PASSWORD}" | docker login --username ${DOCKER_USERNAME} --password-stdin
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+        with:
+          buildx-version: latest
+      - name: Set Version
+        id: set-version
+        run: |
+          echo "::set-output name=version::$(wget -qO- -t1 -T2 "https://api.github.com/repos/JunzhouLiu/BILIBILI-HELPER/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g;s/V//g')"
+          echo "TAG=$(wget -qO- -t1 -T2 "https://api.github.com/repos/JunzhouLiu/BILIBILI-HELPER/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g;s/V//g')" >> $GITHUB_ENV
+      - name: Cache BILIBILI-HELPER tag
+        id: cache-tag
+        uses: actions/cache@v2
+        with:
+          path: ./bilibili-helper/
+          key: ${{ runner.os }}-bilibili-helper-${{ steps.set-version.outputs.version }}
+      - name: Get latest release tag
+        id: get-release-tag
+        if: steps.cache-tag.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ./bilibili-helper
+          echo ${{ steps.set-version.outputs.version }} > ./bilibili-helper/bilibili-helper-${{ steps.set-version.outputs.version }}
+          echo "::set-output name=status::success"
+      - name: Build dockerfile tag arm64
+        if: steps.get-release-tag.outputs.status == 'success'
+        run: |
+          docker buildx build \
+            --platform=linux/arm64 \
+            --output "type=image,push=true" \
+            --tag "superng6/bilbili-helper:arm64-${{ env.TAG }}" \
+            --file Dockerfile-arm64 .
+      - name: Build dockerfile tag x86_64
+        if: steps.get-release-tag.outputs.status == 'success'
+        run: |
+          docker buildx build \
+            --platform=linux/amd64 \
+            --output "type=image,push=true" \
+            --tag "superng6/bilbili-helper:${{ env.TAG }}" \
+            --file Dockerfile .
+      - name: Build dockerfile arm64
+        if: steps.get-release-tag.outputs.status == 'success'
+        run: |
+          docker buildx build \
+            --platform=linux/arm64 \
+            --output "type=image,push=true" \
+            --file ./Dockerfile-arm64 . \
+            --tag superng6/bilbili-helper:arm64-latest
+      - name: Build dockerfile x86_64
+        if: steps.get-release-tag.outputs.status == 'success'
+        run: |
+          docker buildx build \
+            --platform=linux/amd64 \
+            --output "type=image,push=true" \
+            --file ./Dockerfile . \
+            --tag superng6/bilbili-helper:latest
