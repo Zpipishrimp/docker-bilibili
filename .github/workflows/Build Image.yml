@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+
       - name: Dockerhub login
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
@@ -23,19 +24,21 @@ jobs:
         uses: crazy-max/ghaction-docker-buildx@v1
         with:
           buildx-version: latest
-      - name: Set env
+
+      # 获得仓库中的ReleaseTag
+      - name: Set Version
         id: set-version
         run: |
-          echo "TAG=$(cat ReleaseTag | head -n1)" >> $GITHUB_ENV
-          echo "::set-output name=status::success"
-        shell: bash
+          echo "::set-output name=version::$(cat ReleaseTag | head -n1)"
+
+      # 构建docker images 分为tag版和latest版
       - name: Build dockerfile tag arm64
         if: steps.set-version.outputs.status == 'success'
         run: |
           docker buildx build \
             --platform=linux/arm64 \
             --output "type=image,push=true" \
-            --tag "superng6/bilbili-helper:arm64-${{ env.TAG }}" \
+            --tag "superng6/bilbili-helper:arm64-${{ steps.set-version.outputs.version }}" \
             --file Dockerfile-arm64 .
       - name: Build dockerfile tag x86_64
         if: steps.set-version.outputs.status == 'success'
@@ -43,8 +46,9 @@ jobs:
           docker buildx build \
             --platform=linux/amd64 \
             --output "type=image,push=true" \
-            --tag "superng6/bilbili-helper:${{ env.TAG }}" \
+            --tag "superng6/bilbili-helper:${{ steps.set-version.outputs.version }}" \
             --file Dockerfile .
+
       - name: Build dockerfile arm64
         if: steps.set-version.outputs.status == 'success'
         run: |
