@@ -30,6 +30,7 @@ jobs:
         id: set-version
         run: |
           echo "::set-output name=version::$(cat ReleaseTag | head -n1)"
+          echo "::set-output name=status::success"
 
       # 构建docker images 分为tag版和latest版
       - name: Build dockerfile tag arm64
