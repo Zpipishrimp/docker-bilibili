@@ -16,9 +16,9 @@ jobs:
       - name: Set Version
         id: set-version
         run: |
-          BHT=$(wget --no-check-certificate -qO- https://api.github.com/repos/JunzhouLiu/BILIBILI-HELPER/tags | grep 'name' | cut -d\" -f4 | head -1 | cut -c 2- )
-          echo "version=${BHT}"  
-          echo "::set-output name=version::${BHT}"
+          GLRT=$(wget --no-check-certificate -qO- https://api.github.com/repos/JunzhouLiu/BILIBILI-HELPER/tags | grep 'name' | cut -d\" -f4 | head -1 | cut -c 2- )
+          echo "ReleaseTag=${GLRT}"  
+          echo "::set-output name=version::${GLRT}"
 
       # 缓存release tag，用作与下一次执行任务时获取到到release tag做对比
       - name: Cache tag
