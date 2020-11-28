@@ -46,7 +46,8 @@ jobs:
         if: steps.cache-tag.outputs.cache-hit != 'true'
         run: |
           mkdir -p ./tag
-          echo ${{ steps.set-version.outputs.version }} 
+          echo ${{ steps.set-version.outputs.version }} > ./tag/tag-${{ steps.set-version.outputs.version }}
+          echo "::set-output name=status::success"
 
       # 构建docker images 分为tag版和latest版
       - name: Build dockerfile tag arm64
