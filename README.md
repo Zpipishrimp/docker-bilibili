@@ -49,7 +49,7 @@ https://sleele.com/2020/11/24/docker-bilibili-helper/
 | TZ   | 系统时区（默认上海时区） |
 | CUSP   | 自定义配置文件（默认禁用） |
 | TASK   | 执行任务的间隔时间（1d表示1天，1h表示1小时） |
-| CRON   | true时会禁用task，使用cron，请手动编辑/config/bh-crontab |
+| CRON   | true时会禁用task，使用cron，请手动编辑/config/bh-crontab （需重启容器） |
 | DEDEUSERID | 从 Cookie 中获取 |
 | SESSDATA   | 从 Cookie 中获取 |
 | BILI_JCT   | 从 Cookie 中获取 |SERVERPUSHKEY
