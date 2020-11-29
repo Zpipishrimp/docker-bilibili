@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-# download config.json
+# copy config.json
 if [ "${CUSP}" = true ] && [ ! -e /config/config.json ]
 then
   rm -f /app/config.json
@@ -18,11 +18,20 @@ then
   rm -f /app/config.json
 fi
 
+# 创建运行日志文件
 if [[ ! -e /config/bilbili-helper.log ]]
 then
   touch /config/bilbili-helper.log
 fi
 
+# 创建crontab
+if [ ! -e /config/bh-crontab ]
+then
+  cp /app-conf/bh-crontab /config/bh-crontab
+fi
+
 # permissions
+chmod +x /app-conf/bh-run.sh
+chmod +x /config/bh-crontab
 chown -R abc:abc \
     /config

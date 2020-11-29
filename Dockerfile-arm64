@@ -1,11 +1,11 @@
 FROM lsiobase/alpine:3.12 as builder
 # set label
 LABEL maintainer="NG6"
-ARG S6_VER=2.0.0.1
+ARG S6_VER=2.1.0.2
 WORKDIR /downloads
+COPY ReleaseTag  /downloads
 # download bilbili-helper
 RUN apk add --no-cache unzip \
-&&	wget --no-check-certificate https://raw.githubusercontent.com/SuperNG6/docker-bilbili-helper/main/ReleaseTag \
 &&	BHV=$(cat ReleaseTag | head -n1) \
 &&	wget --no-check-certificate https://github.com/JunzhouLiu/BILIBILI-HELPER/releases/download/V${BHV}/BILIBILI-HELPER-v${BHV}.zip \
 &&	unzip BILIBILI-HELPER-v${BHV}.zip \
@@ -20,7 +20,7 @@ RUN	if [ "$(uname -m)" = "x86_64" ];then s6_arch=amd64;elif [ "$(uname -m)" = "a
 FROM arm64v8/openjdk:8-jdk-slim
 # set label
 LABEL maintainer="NG6"
-ENV TZ=Asia/Shanghai TASK=1d \
+ENV TZ=Asia/Shanghai TASK=1d CRON=false \
     CUSP=false DEDEUSERID=1 SESSDATA=2 BILI_JCT=3 \
     PUID=1026 PGID=100
 # copy files
@@ -29,12 +29,13 @@ COPY --from=builder /downloads/BILIBILI-HELPER.jar  /app/BILIBILI-HELPER.jar
 COPY --from=builder /downloads/s6-overlay/  /
 COPY --from=builder /downloads/config.json  /app-conf/config.json
 # create abc user
-RUN apt -y update && apt -y install tzdata \
+RUN apt -y update && apt -y install tzdata cron \
 &&  chmod +x /app/BILIBILI-HELPER.jar \
 &&  useradd -u 1000 -U -d /config -s /bin/false abc \
 &&  usermod -G users abc  \
 &&  echo "**** cleanup ****" \
 &&  apt-get clean \
+&&	apt-get autoremove \
 &&  rm -rf \
 	/tmp/* \
 	/var/lib/apt/lists/* \
