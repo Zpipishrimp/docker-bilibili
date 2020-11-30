@@ -35,7 +35,6 @@ RUN apt -y update && apt -y install tzdata cron \
 &&  usermod -G users abc  \
 &&  echo "**** cleanup ****" \
 &&  apt-get clean \
-&&	apt-get autoremove \
 &&  rm -rf \
 	/tmp/* \
 	/var/lib/apt/lists/* \
