@@ -26,12 +26,12 @@ https://hub.docker.com/r/superng6/bilbili-helper
 https://sleele.com/2020/11/24/docker-bilibili-helper/
 
 ## 使用说明
-目前支持两种处理器架构，x86-64和arm64
+支持x86-64、arm64、arm32
 | Architecture | Tag            |
 | ------------ | -------------- |
 | x86-64       | latest         |
 | arm64        | arm64-latest   |
-
+| arm32        | arm32-latest   |
 
 ### 获取 Bilibili Cookies**
 - 浏览器打开并登录 [bilibili 网站](https://www.bilibili.com/)

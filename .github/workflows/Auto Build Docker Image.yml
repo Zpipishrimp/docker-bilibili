@@ -50,6 +50,18 @@ jobs:
           echo "::set-output name=status::success"
 
       # 构建docker images 分为tag版和latest版
+      - name: Build dockerfile tag arm32
+        if: steps.get-release-tag.outputs.status == 'success'
+        uses: docker/build-push-action@v2
+        with:
+          file: ./Dockerfile-arm32
+          platforms: linux/arm/v7
+          push: true
+          tags: |
+            superng6/bilbili-helper:arm32-${{ steps.set-version.outputs.version }}
+            superng6/bilbili-helper:arm32-latest
+
+
       - name: Build dockerfile tag arm64
         if: steps.get-release-tag.outputs.status == 'success'
         uses: docker/build-push-action@v2
