@@ -60,6 +60,7 @@ https://sleele.com/2020/11/24/docker-bilibili-helper/
 编辑docker-compose.yml文件，填写对应参数
 
 ````
+version: "3"
 
 services:
   bilbili-helper:
@@ -79,7 +80,6 @@ services:
     volumes:
       - /appdata/config:/config
     restart: unless-stopped
-
 ````    
 
 #### 简化版本
