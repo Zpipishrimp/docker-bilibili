@@ -1,3 +1,3 @@
 # do daily/weekly/monthly maintenance
 # min   hour    day     month   weekday command
-10       9       *       *       *       bash /app-conf/bh-run.sh
+30      10       *       *       *      /app-conf/bh-run.sh
