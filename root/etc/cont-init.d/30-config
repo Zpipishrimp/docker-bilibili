@@ -35,11 +35,11 @@ rm -f /etc/cron.d/bh-crontab
 if [ "${CRON}" = true ]
 then
   cp /config/bh-crontab /etc/cron.d/bh-crontab
+  chmod 0644 /etc/cron.d/bh-crontab
 fi
 
 cp /config/bh-crontab /etc/cron.d/bh-crontab
 # permissions
 chmod +x /app-conf/bh-run.sh
-chmod 0644 /etc/cron.d/bh-crontab
 chown -R abc:abc \
     /config
