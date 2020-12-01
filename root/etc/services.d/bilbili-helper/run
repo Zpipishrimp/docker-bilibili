@@ -5,9 +5,9 @@
 
 if [ "${CRON}" = true ]
 then
-    crontab /config/bh-crontab
+    crontab /etc/cron.d/bh-crontab
     echo "===========检查CRON定时任务==========="
-    cat /config/bh-crontab
+    cat /etc/cron.d/bh-crontab
     echo "===========已启动定时任务==========="
     echo "===========刚启动容器时为上次的运行日志，定时任务完成后日志会刷新==========="
     cron && tail -f /config/bilbili-helper.log
