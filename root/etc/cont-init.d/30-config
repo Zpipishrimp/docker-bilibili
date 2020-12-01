@@ -30,8 +30,10 @@ then
   cp /app-conf/bh-crontab /config/bh-crontab
 fi
 
+rm -f /etc/cron.d/bh-crontab
+cp /config/bh-crontab /etc/cron.d/bh-crontab
 # permissions
 chmod +x /app-conf/bh-run.sh
-chmod +x /config/bh-crontab
+chmod 0644 /etc/cron.d/bh-crontab
 chown -R abc:abc \
     /config

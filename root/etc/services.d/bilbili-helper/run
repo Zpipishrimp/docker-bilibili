@@ -10,7 +10,7 @@ then
     cat /config/bh-crontab
     echo "===========已启动定时任务==========="
     echo "===========刚启动容器时为上次的运行日志，定时任务完成后日志会刷新==========="
-    tail -f /config/bilbili-helper.log
+    cron && tail -f /config/bilbili-helper.log
 fi
 
 cd /app && java -jar /app/BILIBILI-HELPER.jar ${DEDEUSERID} ${SESSDATA} ${BILI_JCT} ${SERVERPUSHKEY} | s6-setuidgid abc tee -a /config/bilbili-helper.log
