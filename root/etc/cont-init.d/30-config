@@ -38,7 +38,6 @@ then
   chmod 0644 /etc/cron.d/bh-crontab
 fi
 
-cp /config/bh-crontab /etc/cron.d/bh-crontab
 # permissions
 chmod +x /app-conf/bh-run.sh
 chown -R abc:abc \
