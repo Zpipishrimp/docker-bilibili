@@ -1,5 +1,5 @@
 # Docker BILIBILI-HELPER | BILIBILI助手
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER?style=flat-square)  ![](https://img.shields.io/docker/pulls/superng6/bilbili-helper?style=flat-square)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER?style=flat-square)  ![](https://img.shields.io/docker/pulls/superng6/bilibili-helper?style=flat-square)
 ## 项目介绍
 **基于BILIBILI-HELPER项目封装为docker镜像，并同步更新最新release版本**  
 https://github.com/JunzhouLiu/BILIBILI-HELPER  
@@ -8,7 +8,7 @@ BILIBILI-HELPER自身支持在GitHub action中运行，非常方便。但是由�
 本镜像基于openjdk8官方镜像构建，安全可靠，并尽可能的缩小镜像体积。  
 关于自定义配置请参照BILIBILI-HELPER官方文档。
 ## Docker Hub
-https://hub.docker.com/r/superng6/bilbili-helper
+https://hub.docker.com/r/superng6/bilibili-helper
 
 * [x] 自定义时间运行任务。(默认以打开容器时间开始每24时执行一次)
 * [x] 哔哩哔哩漫画每日自动签到 。
@@ -63,9 +63,9 @@ https://sleele.com/2020/11/24/docker-bilibili-helper/
 version: "3"
 
 services:
-  bilbili-helper:
-    image: superng6/bilbili-helper:latest
-    container_name: bilbili-helper
+  bilibili-helper:
+    image: superng6/bilibili-helper:latest
+    container_name: bilibili-helper
     environment:
       - PUID=1026
       - PGID=100
@@ -86,17 +86,17 @@ services:
 推荐不折腾用户使用，填写`bili_jct` `SESSDATA` `DEDEUSERID` 三项即可使用，默认24时执行任务一次
 ````
 docker run -d \
-  --name=bilbili-helper \
+  --name=bilibili-helper \
   -e DEDEUSERID=1 \
   -e SESSDATA=2 \
   -e BILI_JCT=3 \
   -e CUSP=false \
   --restart unless-stopped \
-  superng6/bilbili-helper:latest
+  superng6/bilibili-helper:latest
   ````
 
-### 自动更新bilbili-helper
-使用watchtower每天早上4点检查更新bilbili-helper
+### 自动更新bilibili-helper
+使用watchtower每天早上4点检查更新bilibili-helper
 ````
 docker run -d \
   --name watchtower \
@@ -104,11 +104,11 @@ docker run -d \
   -e TZ=Asia/Shanghai \
   -v /var/run/docker.sock:/var/run/docker.sock \
   containrrr/watchtower --cleanup --schedule "0 0 4 * * *" \
-  bilbili-helper
+  bilibili-helper
 ````
 ## 版本控制
-如果在某版本的bilbili-helper中遇到问题，想要回退历史版本，可以删除容器后运行指定版本镜像`tag`  
-https://hub.docker.com/r/superng6/bilbili-helper/tags?page=1&ordering=last_updated  
+如果在某版本的bilibili-helper中遇到问题，想要回退历史版本，可以删除容器后运行指定版本镜像`tag`  
+https://hub.docker.com/r/superng6/bilibili-helper/tags?page=1&ordering=last_updated  
 
 ![Xnip2020-11-24_20-55-52](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/Xnip2020-11-24_20-55-52.jpg)
 

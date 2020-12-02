@@ -19,9 +19,9 @@ then
 fi
 
 # 创建运行日志文件
-if [[ ! -e /config/bilbili-helper.log ]]
+if [[ ! -e /config/bilibili-helper.log ]]
 then
-  touch /config/bilbili-helper.log
+  touch /config/bilibili-helper.log
 fi
 
 # 创建crontab
