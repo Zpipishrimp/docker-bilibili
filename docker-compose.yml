@@ -18,3 +18,5 @@ services:
     volumes:
       - /appdata/config:/config
     restart: unless-stopped
+
+    

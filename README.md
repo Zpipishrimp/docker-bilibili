@@ -27,6 +27,7 @@ https://sleele.com/2020/11/24/docker-bilibili-helper/
 
 ## 使用说明
 支持x86-64、arm64、arm32
+
 | Architecture | Tag            |
 | ------------ | -------------- |
 | x86-64       | latest         |
@@ -140,6 +141,7 @@ https://hub.docker.com/r/superng6/bilibili-helper/tags?page=1&ordering=last_upda
 | userAgent          | 浏览器UA      | 用户可根据部署平台配置，可根据userAgent参数列表自由选取，如果触发了HTTP/1.1 412 Precondition Failed也请修改UA |
 
 userAgent可选参数列表
+
 | 平台      | 浏览器         | userAgent                                                                                                                           |
 | --------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | Windows10 | EDGE(chromium) | Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 Edg/86.0.622.69 |
