@@ -62,7 +62,6 @@ https://sleele.com/2020/11/24/docker-bilibili-helper/
 
 ````
 version: "3"
-
 services:
   bilibili-helper:
     image: superng6/bilibili-helper:latest
@@ -82,6 +81,10 @@ services:
       - /appdata/config:/config
     restart: unless-stopped
 ````    
+保存文件后在当前目录执行以下命令启动容器
+````
+docker-compose up -d 
+````
 
 #### 简化版本
 推荐不折腾用户使用，填写`bili_jct` `SESSDATA` `DEDEUSERID` 三项即可使用，默认24时执行任务一次
@@ -122,11 +125,34 @@ https://hub.docker.com/r/superng6/bilibili-helper/tags?page=1&ordering=last_upda
 
 ## 配置自定义功能
 ### 修改自定义配置的方法
-首先需要开启自定义配置选项`CUSP=true`，`false`会删除自定义配置文件  
-挂载`/config`后可以直接在`nas/本机`中编辑`/config/config.json`文件，重启容器后生效. 
+若需要使用自定义配置需要采用docker-compose的运行方法
+
+且需要设置自定义配置选项`CUSP=true`，设置为`false`会删除自定义配置文件
+
+**配置文件位于 `/appdata/config/config.json`**
+
+该目录取决于docker-compose.yml文件中 volumes参数中冒号(:)左边的路径(需要自行创建)
+
+按下列格式编辑`config.json`文件
+````
+{
+  "numberOfCoins": 5,
+  "selectLike": 0,
+  "monthEndAutoCharge": true,
+  "devicePlatform": "ios",
+  "coinAddPriority": 1,
+  "skipDailyTask": 0,
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Safari/605.1.15"
+}
+````
+
+在docker-compose.yml文件所在目录执行以下命令后生效
+````
+docker-compose down
+docker-compose up -d
+````
 ![Xnip2020-11-23_21-27-51](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/Xnip2020-11-23_21-27-51.jpg)
 
-**配置文件位于 `/config/config.json`，修改配置文件后请重启容器**
 
 参数示意
 
