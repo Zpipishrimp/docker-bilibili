@@ -28,11 +28,11 @@ https://sleele.com/2020/11/24/docker-bilibili-helper/
 ## 使用说明
 支持x86-64、arm64、arm32
 
-| Architecture | Tag            |
-| ------------ | -------------- |
-| x86-64       | latest         |
-| arm64        | arm64-latest   |
-| arm32        | arm32-latest   |
+| Architecture | Tag          |
+| ------------ | ------------ |
+| x86-64       | latest       |
+| arm64        | arm64-latest |
+| arm32        | arm32-latest |
 
 ### 获取 Bilibili Cookies**
 - 浏览器打开并登录 [bilibili 网站](https://www.bilibili.com/)
@@ -43,18 +43,18 @@ https://sleele.com/2020/11/24/docker-bilibili-helper/
 
 #### 参数说明
 
-| Name       | Value            |
-| ---------- | ---------------- |
-| PUID |  Linux用户ID（以root用户权限运行填写0） |
-| PGID |  Linux组ID（以root用户权限运行填写0）  |
-| TZ   | 系统时区（默认上海时区） |
-| CUSP   | 自定义配置文件（默认禁用） |
-| TASK   | 执行任务的间隔时间（1d表示1天，1h表示1小时） |
-| CRON   | true时会禁用task，使用cron，请手动编辑/config/bh-crontab （需重启容器） |
-| DEDEUSERID | 从 Cookie 中获取 |
-| SESSDATA   | 从 Cookie 中获取 |
-| BILI_JCT   | 从 Cookie 中获取 |SERVERPUSHKEY
-| SERVERPUSHKEY   | 通过server酱推送执行结果到微信(可选项) |
+| Name          | Value                                                                   |
+| ------------- | ----------------------------------------------------------------------- |
+| PUID          | Linux用户ID（以root用户权限运行填写0）                                  |
+| PGID          | Linux组ID（以root用户权限运行填写0）                                    |
+| TZ            | 系统时区（默认上海时区）                                                |
+| CUSP          | 自定义配置文件（默认禁用）                                              |
+| TASK          | 执行任务的间隔时间（1d表示1天，1h表示1小时）                            |
+| CRON          | true时会禁用task，使用cron，请手动编辑/config/bh-crontab （需重启容器） |
+| DEDEUSERID    | 从 Cookie 中获取                                                        |
+| SESSDATA      | 从 Cookie 中获取                                                        |
+| BILI_JCT      | 从 Cookie 中获取                                                        |
+| SERVERPUSHKEY | 通过server酱推送执行结果到微信(可选项)                                  |
 
 ### 运行方式
 #### docker-compose  
@@ -129,22 +129,23 @@ https://hub.docker.com/r/superng6/bilibili-helper/tags?page=1&ordering=last_upda
 
 且需要设置自定义配置选项`CUSP=true`，设置为`false`会删除自定义配置文件
 
-**配置文件位于 `/appdata/config/config.json`**
+**配置文件位于 `/appdata/config/config.json`，v1.3.0调整了配置项，如果执行失败，请复制最新的配置文件替换旧的配置文件。**
 
 该目录取决于docker-compose.yml文件中 volumes参数中冒号(:)左边的路径(需要自行创建)
 
 按下列格式编辑`config.json`文件
-````
+```json
 {
   "numberOfCoins": 5,
   "selectLike": 0,
   "monthEndAutoCharge": true,
+  "chargeForLove": "0",
   "devicePlatform": "ios",
   "coinAddPriority": 1,
-  "skipDailyTask": 0,
+  "skipDailyTask": false,
   "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Safari/605.1.15"
 }
-````
+```
 
 在docker-compose.yml文件所在目录执行以下命令后生效
 ````
@@ -156,15 +157,16 @@ docker-compose up -d
 
 参数示意
 
-| Key                | Value         | 说明                                                                                                          |
-| ------------------ | ------------- | ------------------------------------------------------------------------------------------------------------- |
-| numberOfCoins      | [0,5]         | 每日投币数量,默认 5                                                                                           |
-| selectLike         | [0,1]         | 投币时是否点赞，默认 0, 0：否 1：是                                                                           |
-| ~~watchAndShare~~  | ~~[0,1]~~     | ~~观看时是否分享~~                                                                                            |
-| monthEndAutoCharge | [false,true]  | 年度大会员月底是否用 B币券 给自己充电，默认 `true`                                                            |
-| devicePlatform     | [ios,android] | 手机端漫画签到时的平台，建议选择你设备的平台 ，默认 `ios`                                                     |
-| coinAddPriority    | [0,1]         | 0：优先给热榜视频投币，1：优先给关注的up投币                                                                  |
-| userAgent          | 浏览器UA      | 用户可根据部署平台配置，可根据userAgent参数列表自由选取，如果触发了HTTP/1.1 412 Precondition Failed也请修改UA |
+| Key                | Value             | 说明                                                                                                                                                                                                                                               |
+| ------------------ | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| numberOfCoins      | [0,5]             | 每日投币数量,默认 5 ,为0时则不投币                                                                                                                                                                                                                 |
+| selectLike         | [0,1]             | 投币时是否点赞，默认 0, 0：否 1：是                                                                                                                                                                                                                |
+| monthEndAutoCharge | [false,true]      | 年度大会员月底是否用 B币券给自己充电，默认 `true`，即充电对象是你本人。                                                                                                                                                                            |
+| chargeForLove      | [0,充电对象的uid] | 给指定up主充电，值为0或者充电对象的uid，默认为0，即给自己充电。</br>如果你没有上传过视频并开启充电计划，充电会失败，B币券会浪费。此时建议配置为给指定的up主充电。</br> 欢迎给即将秃头的我充电 uid：[14602398](https://space.bilibili.com/14602398) |
+| devicePlatform     | [ios,android]     | 手机端漫画签到时的平台，建议选择你设备的平台 ，默认 `ios`                                                                                                                                                                                          |
+| coinAddPriority    | [0,1]             | 0：优先给热榜视频投币，1：优先给关注的up投币                                                                                                                                                                                                       |
+| userAgent          | 浏览器UA          | 用户可根据部署平台配置，可根据userAgent参数列表自由选取，如果触发了HTTP/1.1 412 Precondition Failed也请修改UA                                                                                                                                      |
+| skipDailyTask      | [false,true]      | 是否跳过每日任务，默认`false`,如果需要跳过每日任务，请改为true                                                                                                                                                                                     |
 
 userAgent可选参数列表
 
