@@ -66,6 +66,8 @@ https://sleele.com/2020/11/24/docker-bilibili-helper/
 | SESSDATA   | 从 Cookie 中获取 |
 | BILI_JCT   | 从 Cookie 中获取 |SERVERPUSHKEY
 | SERVERPUSHKEY   | 通过server酱推送执行结果到微信(可选项) |
+| TELEGRAMBOTTOKEN | Telegram Bot的HTTP API (详见[BILIBILI-HELPER文档](https://github.com/JunzhouLiu/BILIBILI-HELPER#telegram%E8%AE%A2%E9%98%85%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C)）|
+| TELEGRAMCHATID | Telegram上userinfobot返回的ID |
 
 ### 运行方式
 #### docker-compose  
