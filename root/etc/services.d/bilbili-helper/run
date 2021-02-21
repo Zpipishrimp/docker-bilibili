@@ -13,7 +13,7 @@ then
     cron && tail -f /config/bilibili-helper.log
 fi
 
-cd /app && java -jar /app/BILIBILI-HELPER.jar ${DEDEUSERID} ${SESSDATA} ${BILI_JCT} ${SERVERPUSHKEY} | s6-setuidgid abc tee -a /config/bilibili-helper.log
+/app-conf/bh-run.sh
 
 echo -e "==================$(date +"%Y/%m/%d %H:%M:%S")==================" | s6-setuidgid abc tee -a /config/bilibili-helper.log
 echo -e "==========今天已签到完毕，下次签到时间为${TASK}后===========" | s6-setuidgid abc tee -a /config/bilibili-helper.log
