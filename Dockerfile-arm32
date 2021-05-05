@@ -7,7 +7,7 @@ COPY ReleaseTag  /downloads
 # download bilibili-helper
 RUN apk add --no-cache unzip \
 &&	BHV=$(cat ReleaseTag | head -n1) \
-&&	wget --no-check-certificate https://github.com/JunzhouLiu/BILIBILI-HELPER-PRE/releases/download/V${BHV}/BILIBILI-HELPER-v${BHV}.zip \
+&&	wget --no-check-certificate https://github.com/JunzhouLiu/BILIBILI-HELPER-PRE/releases/download/v${BHV}/BILIBILI-HELPER-${BHV}-jar-with-dependencies.jar \
 &&	unzip BILIBILI-HELPER-v${BHV}.zip \
 &&	mv BILIBILI-HELPER-v${BHV}.jar BILIBILI-HELPER.jar
 # download s6-overlay
