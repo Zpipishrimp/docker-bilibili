@@ -1,20 +1,14 @@
-FROM lsiobase/alpine:3.12 as builder
+FROM lsiobase/alpine:3.13 as builder
 # set label
 LABEL maintainer="NG6"
 ARG S6_VER=2.1.0.2
 WORKDIR /downloads
 COPY ReleaseTag  /downloads
+COPY install.sh  /downloads
 # download bilibili-helper
-RUN apk add --no-cache unzip \
-&&	BHV=$(cat ReleaseTag | head -n1) \
-&&	wget --no-check-certificate https://github.com/JunzhouLiu/BILIBILI-HELPER-PRE/releases/download/v${BHV}/BILIBILI-HELPER-${BHV}-jar-with-dependencies.jar \
-&&	unzip BILIBILI-HELPER-v${BHV}.zip \
-&&	mv BILIBILI-HELPER-v${BHV}.jar BILIBILI-HELPER.jar
-# download s6-overlay
-RUN	if [ "$(uname -m)" = "x86_64" ];then s6_arch=amd64;elif [ "$(uname -m)" = "aarch64" ];then s6_arch=aarch64;elif [ "$(uname -m)" = "armv7l" ];then s6_arch=arm; fi  \
-&&  wget --no-check-certificate https://github.com/just-containers/s6-overlay/releases/download/v${S6_VER}/s6-overlay-${s6_arch}.tar.gz  \
-&&	mkdir ./s6-overlay \
-&&  tar -xvzf s6-overlay-${s6_arch}.tar.gz -C ./s6-overlay	
+RUN set -ex \
+	&& chmod +x install.sh \
+	&& bash install.sh
 
 # bilibili-helper
 FROM openjdk:8-jdk-slim-buster
