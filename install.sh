@@ -2,7 +2,7 @@
 
 BHV=$(cat ReleaseTag | head -n1)
 # download bilibili-helper
-wget --no-check-certificate https://github.com/JunzhouLiu/BILIBILI-HELPER-PRE/releases/download/V${BHV}/BILIBILI-HELPER-v${BHV}.zip
+wget --no-check-certificate https://github.com/JunzhouLiu/BILIBILI-HELPER/releases/download/V${BHV}/BILIBILI-HELPER-v${BHV}.zip
 unzip BILIBILI-HELPER-v${BHV}.zip
 mv BILIBILI-HELPER-v${BHV}.jar BILIBILI-HELPER.jar
 # download s6-overlay
