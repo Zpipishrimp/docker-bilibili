@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+S6_VER=2.1.0.2
 BHV=$(cat ReleaseTag | head -n1)
 # download bilibili-helper
 wget --no-check-certificate https://github.com/JunzhouLiu/BILIBILI-HELPER/releases/download/V${BHV}/BILIBILI-HELPER-v${BHV}.zip

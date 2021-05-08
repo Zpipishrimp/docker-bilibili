@@ -4,16 +4,16 @@
 # 开始封号了，近期请停止使用
 具体相关讨论请移步  
 请关闭容器或更新到最新版本镜像，直到问题修复    
-https://github.com/JunzhouLiu/BILIBILI-HELPER-PRE/issues
+https://github.com/JunzhouLiu/BILIBILI-HELPER/issues
 
-https://github.com/JunzhouLiu/BILIBILI-HELPER-PRE/issues/315  
-https://github.com/JunzhouLiu/BILIBILI-HELPER-PRE/issues/313#issuecomment-773947440
+https://github.com/JunzhouLiu/BILIBILI-HELPER/issues/315  
+https://github.com/JunzhouLiu/BILIBILI-HELPER/issues/313#issuecomment-773947440
 
 ![aD6sFK](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/2021-02-08/aD6sFK.png)
 
 ## 项目介绍
 **基于BILIBILI-HELPER项目封装为docker镜像，并同步更新最新release版本**  
-https://github.com/JunzhouLiu/BILIBILI-HELPER-PRE  
+https://github.com/JunzhouLiu/BILIBILI-HELPER  
 
 BILIBILI-HELPER自身支持在GitHub action中运行，非常方便。但是由于GitHub action的服务器在海外，异地海外登录账号可能会引起B站风控警报，本地部署更可靠一些。  
 本镜像基于openjdk8官方镜像构建，安全可靠，并尽可能的缩小镜像体积。  
@@ -66,7 +66,7 @@ https://sleele.com/2020/11/24/docker-bilibili-helper/
 | SESSDATA      | 从 Cookie 中获取                                                        |
 | BILI_JCT      | 从 Cookie 中获取                                                        |
 | SERVERPUSHKEY | 通过server酱推送执行结果到微信(可选项)                                  |
-| TELEGRAMBOTTOKEN | Telegram Bot的HTTP API (详见[BILIBILI-HELPER文档](https://github.com/JunzhouLiu/BILIBILI-HELPER-PRE#telegram%E8%AE%A2%E9%98%85%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C)）|
+| TELEGRAMBOTTOKEN | Telegram Bot的HTTP API (详见[BILIBILI-HELPER文档](https://github.com/JunzhouLiu/BILIBILI-HELPER#telegram%E8%AE%A2%E9%98%85%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C)）|
 | TELEGRAMCHATID | Telegram上userinfobot返回的ID |
 
 ### 运行方式

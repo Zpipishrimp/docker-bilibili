@@ -1,7 +1,6 @@
 FROM lsiobase/alpine:3.13 as builder
 # set label
 LABEL maintainer="NG6"
-ARG S6_VER=2.1.0.2
 WORKDIR /downloads
 COPY ReleaseTag  /downloads
 COPY install.sh  /downloads
