@@ -18,6 +18,7 @@ jobs:
         run: |
           TAG=$(wget --no-check-certificate -qO- https://api.github.com/repos/JunzhouLiu/BILIBILI-HELPER/tags | grep 'name' | cut -d\" -f4 | head -1 | cut -c 2- )
 
+
           OnlineReleaseTag=${TAG}
           LocalReleaseTag=$(cat ReleaseTag | head -n1)
 
