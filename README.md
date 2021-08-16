@@ -1,5 +1,5 @@
 # Docker BILIBILI-HELPER | BILIBILI助手
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER-PRE?style=flat-square)  ![](https://img.shields.io/docker/pulls/superng6/BILIBILI-HELPER-PRE?style=flat-square)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER-PRE?style=flat-square)  ![](https://img.shields.io/docker/pulls/superng6/bilibili-helper?style=flat-square)
 
 # 开始封号了，近期请停止使用
 具体相关讨论请移步  
