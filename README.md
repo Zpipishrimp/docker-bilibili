@@ -1,9 +1,7 @@
 # Docker BILIBILI-HELPER | BILIBILI助手
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER-PRE?style=flat-square)  ![](https://img.shields.io/docker/pulls/superng6/bilibili-helper?style=flat-square)
 
-# 开始封号了，近期请停止使用
-具体相关讨论请移步  
-请关闭容器或更新到最新版本镜像，直到问题修复    
+### 注意：有可能会封号，详情请移步到相关讨论区 
 https://github.com/JunzhouLiu/BILIBILI-HELPER-PRE/issues
 
 https://github.com/JunzhouLiu/BILIBILI-HELPER-PRE/issues/315  
