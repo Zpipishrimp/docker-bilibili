@@ -87,7 +87,8 @@ services:
       - BILI_JCT=3
 #     - SERVERPUSHKEY=token
       - CUSP=false
-      - CRON=false
+      # CRON=false，使用sleep;true,定时10.30运行；random，6-24时随机运行
+      - CRON=random
     volumes:
       - /appdata/config:/config
     restart: unless-stopped

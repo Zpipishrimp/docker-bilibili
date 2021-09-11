@@ -22,7 +22,7 @@ COPY --from=builder /downloads/BILIBILI-HELPER.jar  /app/BILIBILI-HELPER.jar
 COPY --from=builder /downloads/s6-overlay/  /
 COPY --from=builder /downloads/config.json  /app-conf/config.json
 # create abc user
-RUN apt -y update && apt -y install tzdata cron \
+RUN apt -y update && apt -y install tzdata cron procps \
 &&  chmod +x /app/BILIBILI-HELPER.jar \
 &&  useradd -u 1000 -U -d /config -s /bin/false abc \
 &&  usermod -G users abc  \

@@ -3,18 +3,21 @@
 # 启动定时任务,默认每天执行一次
 # 启动bilibili-helper
 
-if [ "${CRON}" = true ]
+if [ "${CRON}" = true ] || [ "${CRON}" = random ]
 then
-    crontab /etc/cron.d/bh-crontab
     echo "===========检查CRON定时任务==========="
     cat /etc/cron.d/bh-crontab
-    echo "===========已启动定时任务==========="
+    crontab /etc/cron.d/bh-crontab
+    echo "===========已启动定时任务 $(date +"%Y/%m/%d %H:%M:%S") ==========="
     echo "===========刚启动容器时为上次的运行日志，定时任务完成后日志会刷新==========="
     cron && tail -f /config/bilibili-helper.log
 fi
 
-/app-conf/bh-run.sh
+if [ "${CRON}" = false ]
+then
+    /app-conf/bh-run.sh
+    echo -e "==================$(date +"%Y/%m/%d %H:%M:%S")==================" | s6-setuidgid abc tee -a /config/bilibili-helper.log
+    echo -e "==========今天已签到完毕，下次签到时间为${TASK}后===========" | s6-setuidgid abc tee -a /config/bilibili-helper.log
+    sleep ${TASK}
+fi
 
-echo -e "==================$(date +"%Y/%m/%d %H:%M:%S")==================" | s6-setuidgid abc tee -a /config/bilibili-helper.log
-echo -e "==========今天已签到完毕，下次签到时间为${TASK}后===========" | s6-setuidgid abc tee -a /config/bilibili-helper.log
-sleep ${TASK}

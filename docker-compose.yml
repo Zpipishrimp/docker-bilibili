@@ -16,7 +16,7 @@ services:
       - CUSP=false
       - CRON=false
     volumes:
-      - /appdata/config:/config
+      - $PWD/config:/config
     restart: unless-stopped
 
     
