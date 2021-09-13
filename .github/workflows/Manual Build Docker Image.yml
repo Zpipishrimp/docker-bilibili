@@ -43,8 +43,8 @@ jobs:
           platforms: linux/arm/v7
           push: true
           tags: |
-            superng6/bilibili-helper:arm32-${{ steps.set-version.outputs.version }}
-            superng6/bilibili-helper:arm32-latest
+            superng6/bilibili-helper:arm32-preview-${{ steps.set-version.outputs.version }}
+            superng6/bilibili-helper:arm32-preview
 
       - name: Build dockerfile tag arm64
         if: steps.set-version.outputs.status == 'success'
@@ -54,8 +54,8 @@ jobs:
           platforms: linux/arm64
           push: true
           tags: |
-            superng6/bilibili-helper:arm64-${{ steps.set-version.outputs.version }}
-            superng6/bilibili-helper:arm64-latest
+            superng6/bilibili-helper:arm64-preview-${{ steps.set-version.outputs.version }}
+            superng6/bilibili-helper:arm64-preview
 
       - name: Build dockerfile tag x86_64
         if: steps.set-version.outputs.status == 'success'
@@ -65,5 +65,5 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            superng6/bilibili-helper:${{ steps.set-version.outputs.version }}
-            superng6/bilibili-helper:latest
+            superng6/bilibili-helper:preview-${{ steps.set-version.outputs.version }}
+            superng6/bilibili-helper:preview
