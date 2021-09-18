@@ -20,4 +20,3 @@ then
     echo -e "==========今天已签到完毕，下次签到时间为${TASK}后===========" | s6-setuidgid abc tee -a /config/bilibili-helper.log
     sleep ${TASK}
 fi
-

@@ -1,25 +1,13 @@
 #!/usr/bin/with-contenv bash
 
 # copy config.json
-if [ "${CUSP}" = true ] && [ ! -e /config/config.json ]
+if [ ! -e /config/config.json ]
 then
-  rm -f /app/config.json
   cp /app-conf/config.json /config/config.json
-  cp /config/config.json /app/config.json
-  chown -R root:root /app/config.json
-elif [ "${CUSP}" = true ] && [ -e /config/config.json ]
-then
-  rm -f /app/config.json
-  cp /config/config.json /app/config.json
-  chown -R root:root /app/config.json
-elif [[ "${CUSP}" = false ]]
-then
-  rm -f /config/config.json
-  rm -f /app/config.json
 fi
 
 # 创建运行日志文件
-if [[ ! -e /config/bilibili-helper.log ]]
+if [ ! -e /config/bilibili-helper.log ]
 then
   touch /config/bilibili-helper.log
 fi
@@ -42,5 +30,4 @@ fi
 # permissions
 chmod +x /app-conf/bh-run.sh
 chmod +x /app-conf/random-bh.sh
-chown -R abc:abc \
-    /config
+chown -R abc:abc /config
