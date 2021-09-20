@@ -84,12 +84,6 @@ services:
       - PUID=1026
       - PGID=100
       - TZ=Asia/Shanghai
-      - TASK=1d
-      - DEDEUSERID=1
-      - SESSDATA=2
-      - BILI_JCT=3
-#     - SERVERPUSHKEY=token
-      - CUSP=false
       # CRON=false，使用sleep;true,定时10.30运行；random，6-24时随机运行
       - CRON=random
     volumes:
@@ -106,10 +100,6 @@ docker-compose up -d
 ````
 docker run -d \
   --name=bilibili-helper \
-  -e DEDEUSERID=1 \
-  -e SESSDATA=2 \
-  -e BILI_JCT=3 \
-  -e CUSP=false \
   --restart unless-stopped \
   superng6/bilibili-helper:latest
   ````
@@ -148,19 +138,52 @@ https://hub.docker.com/r/superng6/bilibili-helper/tags?page=1&ordering=last_upda
 
 该目录取决于docker-compose.yml文件中 volumes参数中冒号(:)左边的路径(需要自行创建)
 
-按下列格式编辑`config.json`文件
+### 自定义功能配置
+
+配置文件示例：
+
 ```json
 {
-  "numberOfCoins": 5,
-  "selectLike": 0,
-  "monthEndAutoCharge": true,
-  "chargeForLove": "0",
-  "devicePlatform": "ios",
-  "coinAddPriority": 1,
-  "skipDailyTask": false,
-  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Safari/605.1.15"
+  "biliVerify": {
+    "biliCookies": "你的bilibili cookies"
+  },
+  "taskConfig": {
+    "skipDailyTask": false,
+    "matchGame": false,
+    "showHandModel": false,
+    "predictNumberOfCoins": 1,
+    "minimumNumberOfCoins": 100,
+    "taskIntervalTime": 20,
+    "numberOfCoins": 5,
+    "reserveCoins": 10,
+    "selectLike": 0,
+    "monthEndAutoCharge": true,
+    "giveGift": true,
+    "upLive": "0",
+    "chargeForLove": "14602398",
+    "chargeDay": 8,
+    "devicePlatform": "ios",
+    "coinAddPriority": 1,
+    "userAgent": "你的默认UA"
+  },
+  "pushConfig": {
+    "SC_KEY": "",
+    "SCT_KEY": "",
+    "TG_BOT_TOKEN": "",
+    "TG_USER_ID": "",
+    "DING_TALK_URL": "",
+    "DING_TALK_SECRET": "",
+    "PUSH_PLUS_TOKEN": "",
+    "WE_COM_GROUP_TOKEN": "",
+    "WE_COM_APP_TOKEN_CONF": "",
+    "PROXY_HTTP_HOST": "",
+    "PROXY_SOCKET_HOST": "",
+    "PROXY_PORT": 0
+  }
 }
+
 ```
+
 
 在docker-compose.yml文件所在目录执行以下命令后生效
 ````
