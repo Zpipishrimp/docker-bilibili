@@ -1,6 +1,9 @@
 # Docker BILIBILI-HELPER | BILIBILI助手
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/JunzhouLiu/BILIBILI-HELPER-PRE?style=flat-square)  ![](https://img.shields.io/docker/pulls/superng6/bilibili-helper?style=flat-square)
 
+### 更新2.0版，取消DEDEUSERID SESSDATA BILI_JCT环境变量，变更config.json填写
+2.0版用户请及时更新config.json
+
 ### 注意：有可能会封号，详情请移步到相关讨论区 
 https://github.com/JunzhouLiu/BILIBILI-HELPER-PRE/issues
 
