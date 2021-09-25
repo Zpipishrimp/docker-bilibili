@@ -17,7 +17,6 @@ LABEL maintainer="NG6"
 ENV TZ=Asia/Shanghai TASK=1d CRON=false \
     PUID=1026 PGID=100
 # copy files
-COPY root/ /
 COPY --from=builder /downloads/BILIBILI-HELPER.jar  /app/BILIBILI-HELPER.jar
 COPY --from=builder /downloads/s6-overlay/  /
 COPY --from=builder /downloads/config.json  /app-conf/config.json
@@ -33,6 +32,7 @@ RUN apt -y update && apt -y install tzdata cron procps \
 	/var/lib/apt/lists/* \
 	/var/tmp/*
 
+COPY root/ /
 
 WORKDIR /app
 # volume
