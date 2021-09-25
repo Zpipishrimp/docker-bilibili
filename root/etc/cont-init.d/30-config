@@ -18,16 +18,7 @@ then
   cp /app-conf/bh-crontab /config/bh-crontab
 fi
 
-rm -f /etc/cron.d/bh-crontab
-
-if [ "${CRON}" = true ] || [ "${CRON}" = random ]
-then
-  cp /config/bh-crontab /etc/cron.d/bh-crontab
-  chmod 0644 /etc/cron.d/bh-crontab
-fi
-
-
 # permissions
-chmod +x /app-conf/bh-run.sh
-chmod +x /app-conf/random-bh.sh
+chmod a+x /app-conf/bh-run.sh
+chmod a+x /app-conf/random-bh.sh
 chown -R abc:abc /config

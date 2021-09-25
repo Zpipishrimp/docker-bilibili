@@ -11,10 +11,8 @@ RANDMINUTE=$(($RANDOM%60))
 RANDHOUR=$(($RANDOM%$DIFF+$STARTTIME))
 
 # 创建定时任务脚本
-
-cat > /etc/cron.d/bh-crontab << EOF
+cat > /config/bh-crontab << EOF
 # do daily/weekly/monthly maintenance
 # min   hour    day     month   weekday command
   $[RANDMINUTE]     $[RANDHOUR]       *       *       *      /app-conf/bh-run.sh
 EOF
-chmod 0644 /etc/cron.d/bh-crontab
