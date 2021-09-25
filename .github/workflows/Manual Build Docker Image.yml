@@ -35,13 +35,13 @@ jobs:
           echo "::set-output name=status::success"
 
       # 加快镜像构建速度
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
+      # - name: Cache Docker layers
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: /tmp/.buildx-cache
+      #     key: ${{ runner.os }}-buildx-${{ github.sha }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-buildx-
 
       # 构建docker images 分为tag版和latest版
       - name: Build dockerfile tag arm32
@@ -51,7 +51,10 @@ jobs:
           file: ./Dockerfile-arm32
           platforms: linux/arm/v7
           push: true
-          cache-from: type=local,src=/tmp/.buildx-cache
+          # cache-from: type=local,src=/tmp/.buildx-cache
+          # cache-to: type=local,dest=/tmp/.buildx-cache
+          cache-from: type=gha, scope=${{ github.workflow }}
+          cache-to: type=gha, scope=${{ github.workflow }}
           tags: |
             superng6/bilibili-helper:arm32-preview-${{ steps.set-version.outputs.version }}
             superng6/bilibili-helper:arm32-preview
@@ -63,7 +66,10 @@ jobs:
           file: ./Dockerfile-arm64
           platforms: linux/arm64
           push: true
-          cache-from: type=local,src=/tmp/.buildx-cache
+          # cache-from: type=local,src=/tmp/.buildx-cache
+          # cache-to: type=local,dest=/tmp/.buildx-cache
+          cache-from: type=gha, scope=${{ github.workflow }}
+          cache-to: type=gha, scope=${{ github.workflow }}
           tags: |
             superng6/bilibili-helper:arm64-preview-${{ steps.set-version.outputs.version }}
             superng6/bilibili-helper:arm64-preview
@@ -75,12 +81,15 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          cache-from: type=local,src=/tmp/.buildx-cache
+          # cache-from: type=local,src=/tmp/.buildx-cache
+          # cache-to: type=local,dest=/tmp/.buildx-cache
+          cache-from: type=gha, scope=${{ github.workflow }}
+          cache-to: type=gha, scope=${{ github.workflow }}
           tags: |
             superng6/bilibili-helper:preview-${{ steps.set-version.outputs.version }}
             superng6/bilibili-helper:preview
 
-      - name: Move cache
-        run: |
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+      # - name: Move cache
+      #   run:
+      #     rm -rf /tmp/.buildx-cache
+      #     mv /tmp/.buildx-cache-new /tmp/.buildx-cache
