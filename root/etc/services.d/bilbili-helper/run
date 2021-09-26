@@ -15,7 +15,7 @@ fi
 
 if [ "${CRON}" = false ]
 then
-    . /app-conf/bh-run.sh
+    cd /app && java -jar BILIBILI-HELPER.jar /config/config.json | s6-setuidgid abc tee /config/bilibili-helper.log
     echo -e "==================$(date +"%Y/%m/%d %H:%M:%S")==================" | s6-setuidgid abc tee -a /config/bilibili-helper.log
     echo -e "==========今天已签到完毕，下次签到时间为${TASK}后===========" | s6-setuidgid abc tee -a /config/bilibili-helper.log
     sleep ${TASK}
