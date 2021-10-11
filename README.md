@@ -74,7 +74,7 @@ https://sleele.com/2020/11/24/docker-bilibili-helper/
 
 ps:cookie 和 ua 只需要选中，右键复制值即可。
 
-![docs//IMG/ck.png](https://gitee.com/demodaigua_admin/BILIBILI-HELPER-PRE/raw/main/docs/IMG/ck.png))
+![image](https://user-images.githubusercontent.com/10470892/136814046-f4cdbab4-70d0-411e-9d16-cc6305fe5949.png)
 
 [1]: https://www.bilibili.com/
 
