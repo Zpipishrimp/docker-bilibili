@@ -74,7 +74,7 @@ https://sleele.com/2020/11/24/docker-bilibili-helper/
 
 ps:cookie 和 ua 只需要选中，右键复制值即可。
 
-![docs//IMG/ck.png](https://raw.githubusercontent.com/JunzhouLiu/BILIBILI-HELPER-PRE/main/docs/IMG/ck.png))
+![docs//IMG/ck.png](https://gitee.com/demodaigua_admin/BILIBILI-HELPER-PRE/raw/main/docs/IMG/ck.png))
 
 [1]: https://www.bilibili.com/
 
@@ -130,6 +130,8 @@ v1.x : 推荐不折腾用户使用，填写`bili_jct` `SESSDATA` `DEDEUSERID` �
 v2.x : 在 config.json 中填写完整的 cookie 串。
 
 **配置文件位于 `/appdata/config/config.json`，v2.0.0 调整了配置项，如果执行失败，请复制最新的配置文件替换旧的配置文件。**
+![image](https://user-images.githubusercontent.com/10470892/136812990-24faff8d-68dc-4d84-9926-aa0be2cd7bba.png)
+注意在容器目录中是config文件夹下的config.json，而非app-conf文件夹
 
 该目录取决于 docker-compose.yml 文件中 volumes 参数中冒号(:)左边的路径(需要自行创建)
 
